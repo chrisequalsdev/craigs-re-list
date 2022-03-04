@@ -8,11 +8,9 @@ home_url = 'https://accounts.craigslist.org/login/home'
 
 # Selenium config
 selenium_options = Options()
-selenium_options.headless = False
+selenium_options.headless = True
 user_agent = os.getenv('USER_AGENT') 
 selenium_options.add_argument('user-agent={0}'.format(user_agent))
-
-print(user_agent)
 
 def login(driver):
     username = driver.find_element_by_name('inputEmailHandle')
