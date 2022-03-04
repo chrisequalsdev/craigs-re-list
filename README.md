@@ -1,4 +1,4 @@
-# craigslist_renew
+# craigs-re-list
 Simple Python 3 script to renew craigslist listings with Selenium
 
 ### Before running this script you will need to create this .env file in the project folder:
