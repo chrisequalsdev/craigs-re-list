@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from dotenv import load_dotenv
 import os
+from datetime import datetime
 
 load_dotenv()
 home_url = 'https://accounts.craigslist.org/login/home'
@@ -28,15 +29,15 @@ def main():
     driver.get(home_url)
     login(driver)
     renew_links = check_for_renewals(driver)
-    print(f"Found {len(renew_links)} listing(s) that can be renewed")
+    print(f"{datetime.now()}: Found {len(renew_links)} listing(s) that can be renewed")
 
     while len(renew_links):
         renew_links[0].click()
         renewed_listing = driver.find_element_by_id('titletextonly').text
-        print(f"Renewed {renewed_listing}")
+        print(f"{datetime.now()}: Renewed {renewed_listing}")
         driver.get(home_url)
         renew_links = check_for_renewals(driver) #Refresh renewal list
-        print(f"Found {len(renew_links)} more listing(s) that can be renewed")
+        print(f"{datetime.now()}: Found {len(renew_links)} more listing(s) that can be renewed")
 
     driver.quit()
 
