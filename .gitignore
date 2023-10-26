@@ -1,2 +1,4 @@
-renew_test.py
+venv
 .env
+*.log
+test.py
