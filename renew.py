@@ -35,7 +35,7 @@ def check_for_renewals(driver):
     return renew_links
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--headless', action=argparse.BooleanOptionalAction)
+parser.add_argument('--headless', action=argparse.BooleanOptionalAction, help="Use --no-headless to show browser")
 
 def main():
     home_url = 'https://accounts.craigslist.org/login/home'
@@ -44,7 +44,7 @@ def main():
     renew_links = check_for_renewals(driver)
     print(f"{datetime.now()}: Found {len(renew_links)} listing(s) that can be renewed")
 
-    while len(renew_links):
+    while renew_links:
         renew_links[0].click()
         renewed_listing = driver.find_element(by=By.ID, value='titletextonly').text
         print(f"{datetime.now()}: Renewed {renewed_listing}")
